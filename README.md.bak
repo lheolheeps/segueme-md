@@ -5,3 +5,7 @@ Plataforma dedicada a publicações e anuncios do Movimento de Jovens com Cristo
 Construido com AngularJS e Ionic + Firebase (Login Facebook)
 
 A plataforma é composta de um [site](http://seguememd.16mb.com/) feito HTML, CSS e JS (Baseado no template disponibilizado pelo HTML5 UP), um [app](http://) em AngularJS, Ionic e Firebase (Login Facebook) e um [sistema](http://seguememd.16mb.com/sistema/) de gerenciamento em PHP, HTML, CSS e JS, utilizando um framework próprio.
+
+## Licença
+
+Este projeto está sob a licença MIT. Para maiores detalhes acesse o <a href="./LICENSE">arquivo de licença</a>.
