@@ -1,0 +1,39 @@
+<ion-view cache-view="false" class="view login">
+  <ion-content scroll="false">
+    <div class="tituloLogin">
+      <div>
+        <h1>Segue-me M/D - Login</h1>
+      </div>
+      <div class="list list-inset">
+        <form name="formLogin">
+          <label class="item item-input">
+            <input type="email" ng-model="form.email" name="email" required placeholder="exemplo@email.com">
+            <span ng-class="error" ng-show="formLogin.email.$error.required">Informe seu E-mail&nbsp;</span>
+            <span ng-class="error" ng-show="formLogin.email.$error.email">E-mail Inválido!&nbsp;</span>
+          </label>
+          <label class="item item-input">
+            <input type="password" ng-model="form.senha" name="senha" required placeholder="**********">
+            <span ng-class="error" ng-show="formLogin.senha.$error.required">Informe sua Senha&nbsp;</span>
+          </label>
+        </div>
+        <div class="submit">
+          <input ng-disabled="formLogin.$invalid" ng-click="logar()" class="button button-block button-positive" Value="Entrar">
+        </div>
+      </form>
+    </div>
+    <div class="botao-footer">
+      <div>
+        Se Possivel
+        <a href="#/Login" class="subdued">
+          Entre com o Facebook
+        </a>
+      </div>
+      <div>
+        <a href="" onclick="window.open('http://seguememd.16mb.com/sistema/index.php?Perfil/cadastrar', '_system');" class="subdued">
+          Clique Aqui
+        </a>
+          para se Cadastrar!
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

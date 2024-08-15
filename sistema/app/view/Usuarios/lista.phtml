@@ -1,0 +1,249 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Usuarios <small>listar Todos</small></h2>
+            <div class="clearfix"></div>
+        </div>
+        <?php if($view_success): ?>
+            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Wow!</strong> <?php echo $view_infoSuccess; ?>
+                </div>
+            </div>
+        <?php endif;?>
+        <?php if($view_erro): ?>
+            <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Ops!</strong> <?php echo $view_infoErro; ?>
+                </div>
+            </div>
+        <?php endif;?>
+        <br />
+        <div class="x_content">
+            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                    <li role="presentation" class="<?php echo $view_novos;?>"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Novos</a>
+                    </li>
+                    <li role="presentation" class="<?php echo $view_existentes;?>"><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"  aria-expanded="false">Existentes</a>
+                    </li>
+                    <li role="presentation" class="<?php echo $view_cancelados;?>"><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Cancelados</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <!-- Novos usuarios -->
+                    <div role="tabpanel" class="tab-pane fade <?php echo $view_novos;?> in" id="tab_content1" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <table id="novos" class="table table-striped responsive-utilities jambo_table">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Nome </th>
+                                                    <th>Apelido </th>
+                                                    <th>Observação </th>
+                                                    <th class=" no-link last"><span class="nobr">Ação</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php if (!$view_listaNovosUsuarios): ?>
+                                                    <tr class="even pointer">
+                                                        <td class=" ">Nenhuma Novo Usuario. </td>
+                                                        <td class=" "> </td>
+                                                        <td class=" "> </td>
+                                                        <td class=" "> </td>
+                                                    </tr>
+                                                <?php else: ?>
+                                                    <?php foreach ($view_listaNovosUsuarios as $usuario): ?>
+                                                        <tr class="even pointer">
+                                                            <td class=" "><?php echo $usuario->getNome(); ?></td>
+                                                            <td class=" "><?php
+                                                                $hLogic = new HierarquiaLogic();
+                                                                $hierarquia = $hLogic->obterPorId($usuario->getHierarquia());
+                                                                echo $hierarquia->getDescricao();
+                                                                ?> <?php echo $usuario->getApelido(); ?></td>
+                                                            <td class=" "><?php echo $usuario->getObservacao(); ?> </td>
+                                                            <td class=" last"><a href="#" data-toggle="modal" data-target=".bs-example-modal-new<?php echo $usuario->getId(); ?>">Ver Mais</a></td>
+                                                        </tr>
+                                                        <div class="modal fade bs-example-modal-new<?php echo $usuario->getId(); ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm">
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel2"><?php echo $usuario->getNome(); ?> - <?php echo $hierarquia->getDescricao(); ?> <?php echo $usuario->getApelido(); ?></h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 col-xs-12">  
+                                                                                <img class="col-md-12 col-xs-12 center-block" src="<?php echo $usuario->getUrlImagem(); ?>" alt="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a href="index.php?Usuarios/rejeitar/id/<?php echo SecurityEncryptionHelper::encrypt($usuario->getId()); ?>/tab/n" type="button" class="btn btn-danger">Rejeitar</a>
+                                                                        <a href="index.php?Usuarios/aceitar/id/<?php echo SecurityEncryptionHelper::encrypt($usuario->getId()); ?>/tab/n" type="button" class="btn btn-warning">Confirmar</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Usuarios Existentes -->
+                    <div role="tabpanel" class="tab-pane fade <?php echo $view_existentes;?> in" id="tab_content2" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <table id="usuarios" class="table table-striped responsive-utilities jambo_table">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Nome </th>
+                                                    <th>Apelido </th>
+                                                    <th>Observação </th>
+                                                    <th class=" no-link last"><span class="nobr">Ação</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php if (!$view_listaUsuarios): ?>
+                                                    <tr class="even pointer">
+                                                        <td class=" ">Nenhuma Usuario Existente. </td>
+                                                        <td class=" "> </td>
+                                                        <td class=" "> </td>
+                                                        <td class=" "> </td>
+                                                    </tr>
+                                                <?php else: ?>
+                                                    <?php foreach ($view_listaUsuarios as $usuario): ?>
+                                                        <tr class="even pointer">
+                                                            <td class=" "><?php echo $usuario->getNome(); ?></td>
+                                                            <td class=" "><?php
+                                                                $hLogic = new HierarquiaLogic();
+                                                                $hierarquia = $hLogic->obterPorId($usuario->getHierarquia());
+                                                                echo $hierarquia->getDescricao();
+                                                                ?> <?php echo $usuario->getApelido(); ?></td>
+                                                            <td class=" "><?php echo $usuario->getObservacao(); ?> </td>
+                                                            <td class=" last"><a href="#" data-toggle="modal" data-target=".bs-example-modal-user<?php echo $usuario->getId(); ?>">Ver Mais</a></td>
+                                                        </tr>
+                                                        <div class="modal fade bs-example-modal-user<?php echo $usuario->getId(); ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm">
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel2"><?php echo $usuario->getNome(); ?> - <?php echo $hierarquia->getDescricao(); ?> <?php echo $usuario->getApelido(); ?></h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 col-xs-12">  
+                                                                                <img class="col-md-12 col-xs-12 center-block" src="<?php echo $usuario->getUrlImagem(); ?>" alt="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a href="index.php?Usuarios/rejeitar/id/<?php echo SecurityEncryptionHelper::encrypt($usuario->getId()); ?>/tab/e" type="button" class="btn btn-danger">Desativar</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Usuarios Rejeitados -->
+                    <div role="tabpanel" class="tab-pane fade <?php echo $view_cancelados;?> in" id="tab_content3" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <table id="rejeitados" class="table table-striped responsive-utilities jambo_table">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>Nome </th>
+                                                    <th>Apelido </th>
+                                                    <th>Observação </th>
+                                                    <th class=" no-link last"><span class="nobr">Ação</span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php if (!$view_listaUsuariosRejeitados): ?>
+                                                    <tr class="even pointer">
+                                                        <td class=" ">Nenhuma Usuario Rejeitado. </td>
+                                                        <td class=" "> </td>
+                                                        <td class=" "> </td>
+                                                        <td class=" "> </td>
+                                                    </tr>
+                                                <?php else: ?>
+                                                    <?php foreach ($view_listaUsuariosRejeitados as $usuario): ?>
+                                                        <tr class="even pointer">
+                                                            <td class=" "><?php echo $usuario->getNome(); ?></td>
+                                                            <td class=" "><?php
+                                                                $hLogic = new HierarquiaLogic();
+                                                                $hierarquia = $hLogic->obterPorId($usuario->getHierarquia());
+                                                                echo $hierarquia->getDescricao();
+                                                                ?> <?php echo $usuario->getApelido(); ?></td>
+                                                            <td class=" "><?php echo $usuario->getObservacao(); ?> </td>
+                                                            <td class=" last"><a href="#" data-toggle="modal" data-target=".bs-example-modal-rjei<?php echo $usuario->getId(); ?>">Ver Mais</a></td>
+                                                        </tr>
+                                                        <div class="modal fade bs-example-modal-rjei<?php echo $usuario->getId(); ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm">
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel2"><?php echo $usuario->getNome(); ?> - <?php echo $hierarquia->getDescricao(); ?> <?php echo $usuario->getApelido(); ?></h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 col-xs-12">  
+                                                                                <img class="col-md-12 col-xs-12 center-block" src="<?php echo $usuario->getUrlImagem(); ?>" alt="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a href="index.php?Usuarios/aceitar/id/<?php echo SecurityEncryptionHelper::encrypt($usuario->getId()); ?>/tab/c" type="button" class="btn btn-warning">Ativar</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

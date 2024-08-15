@@ -1,0 +1,45 @@
+<ion-view class="view" view-title="Segue-me M/D">
+  <ion-nav-bar class="bar-energized titulo">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <div class="bar bar-subheader item-input-inset">
+    <div class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input id="textoBusca" type="search" placeholder="Palavra-Chave" ng-model="textoBusca" autocorrect="off" >
+      <button class="button button-clear" ng-click="limparBusca()">X</button>
+    </div>
+    <button class="button button-clear" ng-click="buscar()">Buscar</button>
+  </div>
+  <ion-content class="has-header has-subheader">
+    <ion-refresher pulling-text="Deslize para Carregar..." on-refresh="reload()">
+    </ion-refresher>
+    <ion-list>
+      <div class="list card" ng-repeat="post in posts" type="item-text-wrap">
+        <div class="item item-avatar">
+          <img src="{{post.imgUsuario}}">
+          <h2>{{post.titulo}}</h2>
+          <p>{{post.data}}</p>
+        </div>
+        <div class="item item-body">
+          <img class="full-image" src="{{post.img}}">
+          <p class="descricao">
+            {{post.descricao}}
+          </p>
+          <p>
+            <a href="" ng-click="curtir(post)" class="subdued">
+              <i class="icon ion-ios-heart{{post.btnCurtir}}"></i>
+              {{post.curtidas}} Seguidas
+            </a>
+            <a href="#/tab/principal/{{post.id}}" class="subdued">
+              <i class="icon ion-chatboxes"></i>
+              {{post.comentarios}} Comentarios
+            </a>
+          </p>
+        </div>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="carregarPosts()" ng-if="scroll" icon="ion-loading-c" distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

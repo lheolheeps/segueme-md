@@ -1,0 +1,148 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Publicações<small> listar todas</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <?php if($view_success): ?>
+                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                        <div class="alert alert-success alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Wow!</strong> <?php echo $view_infoSuccess; ?>
+                        </div>
+                    </div>
+                <?php endif;?>
+                <?php if($view_error): ?>
+                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                        <div class="alert alert-error alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Ops!</strong> <?php echo $view_infoErro; ?>
+                        </div>
+                    </div>
+                <?php endif;?>
+                <?php if(!$view_listaPosts): ?>
+                    <br>
+                    <h2 class="text-center">Nenhuma publicacao cadastrada. </h2>
+                    <br>
+                <?php else:?>
+                    <div class="row">
+                        <?php $countLinha = 0; ?>
+                        <?php foreach ($view_listaPosts as $post): ?>
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="thumbnail">
+                                    <div class="image view view-first">
+                                        <img style="width: 100%; display: block;" src="<?php echo $post->getUrlImagem();?>" alt="image" />
+                                        <div class="mask">
+                                            <p><?php echo $post->getTitulo();?></p>
+                                            <div class="tools tools-bottom">
+                                                <a type="button" data-toggle="modal" data-target="#modal-detalhe<?php echo $post->getId();?>">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                                <a type="button" data-toggle="modal" data-target="#modal-delete<?php echo $post->getId();?>">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="caption">
+                                        <p><?php echo substr($post->getDescricao(), 0, 40);?> [...]</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modal-detalhe<?php echo $post->getId();?>" tabindex="-1" role="dialog" aria-labelledby="project-1-label" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="project-1-label">Detalhes da Publicação</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3><?php echo $post->getTitulo();?></h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <br>
+                                                    <p class="text-justify"><?php echo $post->getDescricao();?></p>
+                                                    <br>
+                                                    <?php if ($post->getUsuario() == 3): ?>
+                                                        <p class="text-justify red">POSTADO COMO SEGUE-ME</p>
+                                                    <?php endif;?>
+                                                    <?php if($post->getCanal() == 1): ?>
+                                                        <p class="text-justify red">POSTADO APENAS NO APLICATIVO</p>
+                                                    <?php else: 
+                                                        if($post->getCanal() == 2): ?>
+                                                            <p class="text-justify red">POSTADO APENAS NA WEB</p>
+                                                        <?php else: 
+                                                            if($post->getCanal() == 3): ?>
+                                                                <p class="text-justify red">POSTADO EM TODAS AS PLATAFORMAS</p>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <img class="col-md-10 col-md-offset-1" class="center-block" src="<?php echo $post->getUrlImagem();?>" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="index.php?Publicacao/alterar/id/<?php echo SecurityEncryptionHelper::encrypt($post->getId());?>/p/<?php echo $view_pagina;?>" type="button" class="btn btn-warning">Alterar Publicação</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modal-delete<?php echo $post->getId();?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel2">Deletar Publicação</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h4>Você tem Certeza?</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            <a href="index.php?Publicacao/excluir/id/<?php echo SecurityEncryptionHelper::encrypt($post->getId());?>/p/<?php echo $view_pagina;?>" type="button" class="btn btn-warning">Confirmar</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <?php if ($countLinha === 3): ?>
+                        </div>
+                    <div class="row">
+                    <?php $countLinha = 0;
+                            else: $countLinha++;
+                        endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="row text-center">
+                        <?php if ($view_pagina > 1): ?>
+                            <a href='index.php?Publicacao/listar/pagina/<?php echo $view_pagina - 1?>' class='btn btn-info'>&laquo; Anterior</a>
+                        <?php else: ?>
+                            <a class='btn btn-default disabled'>&laquo; Anterior</a>
+                        <?php endif; ?>
+
+                        <?php for ($i = 1; $i < $view_totalPagina + 1; $i++) {
+                            $ativo = ($i == $view_pagina) ? 'numativo' : ''; ?>
+                            <style> .numativo{ background: #1B3B54; }</style>
+                            <a href='index.php?Publicacao/listar/pagina/<?php echo $i ?>' class='btn btn-info <?php echo $ativo ?>'> <?php echo $i ?> </a>
+                        <?php } ?>
+
+                        <?php if ($view_pagina < $view_totalPagina): ?>
+                            <a href='index.php?Publicacao/listar/pagina/<?php echo $view_pagina + 1?>' class='btn btn-info'>proximo &raquo;</a>
+                        <?php else: ?>
+                            <a class='btn btn-default disabled'>proximo &raquo;</a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+</div>

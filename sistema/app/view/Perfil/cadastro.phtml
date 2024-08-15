@@ -1,0 +1,56 @@
+<div class="two-forms">
+    <div class="wrap">
+        <br>
+        <div class="login">
+            <h2 style="text-align: center;">Segue-me M/D - Cadastre-se</h2>
+            <?php if($view_erro): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Algo errado Aconteceu. Por favor Contate o Administrador.</label>
+                </div> <br>
+            <?php endif; ?>
+            <?php if($view_erroEmail): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Este e-mail já esta sendo utilizado. Por favor tente novamente.</label>
+                </div> <br>
+            <?php endif; ?>
+            <?php if($view_erroSenha): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Senhas não conferem. Por favor tente novamente.</label>
+                </div> <br>
+            <?php endif; ?>
+            <?php if($view_erroImg): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, é Necessario enviar uma foto sua pro Perfil.</label>
+                </div> <br>
+            <?php endif; ?>
+            <?php if($view_success): ?>
+                <div class="success">
+                    <label for="inputError1">Cadastro realizado com Sucesso. Aguarde enquanto avaliamos seu Perfil.</label>
+                </div> <br>
+            <?php endif; ?>
+            <div class="login-info">
+                <form method="post" enctype="multipart/form-data" action="index.php?Request/post/l/Usuario/a/inserir">
+                    <div class="users">
+                        <input name="nome" type="text" class="text" placeholder="Insira seu Nome" required="">
+                        <input name="hierarquia" type="radio" value="1" checked=""/> Primo(a)
+                        <input name="hierarquia" type="radio" value="2"/> Tio(a)
+                        <input name="apelido" type="text" class="text" placeholder="Insira seu Apelido" requirid="">
+                        <input name="imagem" type="file" class="text"   placeholder="Insira uma Imagem" id="imagem" required=""/>
+                        <input name="email" type="email" class="text" placeholder="Insira seu E-mail" required="">
+                        <input name="observacao" type="text" class="text" placeholder="Insira uma Palavra-Chave (informe ao adm)" required="">
+                        <input name="senha" type="password" class="text" placeholder="Insira sua Senha" minlength="6" maxlength="18" required="">
+                        <input name="confirmacao" type="password" class="text" placeholder="Confirme seu Senha" minlength="6" maxlength="18" required="">
+                    </div>
+                    <div class="btns">
+                        <input type="submit" value="entrar" >
+                    </div>
+                </form>
+                <div class="clear"> </div>
+            </div>
+        </div>
+        <div class="clear"> </div>
+    </div>
+</div>
+<div class="copy-right">
+    <p><a href="http://seguememd.com.br" target="_blank">Segue-me M/D</a> &copy; 2016 | Todos os Direitos Reservados</p>
+</div>

@@ -1,0 +1,49 @@
+<div id="wrapper">
+    <div id="login" class="animate form">
+        <section class="login_content login_center">
+            <form method="post" action="<?php echo UrlRequestHelper::mountUrlGet('Usuario', 'registrar') ?>" >
+                <h1 class="login_center">Registre-se</h1>
+                <div>
+                    <input type="text" class="form-control" placeholder="Nome Fantasia" required="" />
+                </div>
+                <div>
+                    <input type="checkbox" style="margin-bottom: 4%; margin-top: -4%;" value="filial" name="checkfilial" /> Sou uma Filial.
+                </div>
+                <div>
+                    <input type="text" class="form-control" placeholder="Nome da Filial" required="" />
+                </div>
+                <div>
+                    <input type="text" class="form-control" placeholder="Numero do Cnpj" required="" />
+                </div>
+                <div>
+                    <input type="email" class="form-control" placeholder="E-mail" required="" />
+                </div>
+                <div>
+                    <input type="password" class="form-control" placeholder="Senha" required="" />
+                </div>
+                <div>
+                    <input type="password" class="form-control" placeholder="Confirmacao de Senha" required="" />
+                </div>
+                <div>
+                    <input class="btn btn-default submit" type="submit" value="Registrar"/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="separator">
+
+                    <p class="change_link">Já possui cadastro?
+                        <a href="<?php echo UrlRequestHelper::mountUrl('Logon', 'login') ?>" class="to_register"> Logue-se </a>
+                    </p>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div>
+                        <h1><i class="fa fa-beer" style="font-size: 26px;"></i> PubApp!</h1>
+
+                        <p>Todos os Direitos Reservados © 2015 </p>
+                    </div>
+                </div>
+            </form>
+            <!-- form -->
+        </section>
+        <!-- content -->
+    </div>
+</div>

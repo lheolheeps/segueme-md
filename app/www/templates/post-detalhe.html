@@ -1,0 +1,43 @@
+<ion-view view-title="Comentarios" class="view">
+  <ion-nav-bar class="bar-energized titulo">
+    <ion-nav-back-button>
+
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content class="padding">
+    <ion-refresher pulling-text="Deslize para Carregar..." on-refresh="reloadComents()">
+    </ion-refresher>
+    <div class="list card" type="item-text-wrap">
+      <div class="item item-avatar">
+        <img src="{{publicacao.imgUsuario}}">
+        <h2>{{publicacao.titulo}}</h2>
+        <p>{{publicacao.data}}</p>
+      </div>
+    </div>
+    <ion-list>
+      <div class="message-wrapper" ng-repeat="comentario in comentarios">
+          <img class="profile-pic left" ng-src="{{comentario.img}}"/>
+          <div class="chat-bubble left" on-hold="onComentarioHold($event, $index, comentario)">
+              <div class="message">{{comentario.descricao}}
+              </div>
+              <div class="message-detail">
+                  <span class="bold">{{comentario.nome}}</span>,
+                  <span>{{comentario.data}}</span>
+              </div>
+          </div>
+        <div class="cf"></div>
+      </div>
+      <div style="margin-bottom: 45px;" ></div>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="carregarComentarios()" ng-if="scrollComent" icon="ion-loading-c" distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+  <div class="bar bar-footer item-input-inset" style="margin-bottom: 48px;">
+    <div class="item-input-wrapper">
+      <i class="icon ion-ios-chatboxes placeholder-icon"></i>
+      <input type="search" maxlength="30" placeholder="Adicione um Comentario..." ng-model="textoComentario" autocorrect="off" >
+      <button class="button button-clear" ng-click="limparTextoComentario()">X</button>
+    </div>
+    <button class="button button-clear" ng-click="comentar()">Enviar</button>
+  </div>
+</ion-view>

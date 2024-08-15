@@ -1,0 +1,33 @@
+<ion-view cache-view="false" view-title="{{usuario.nome}}" class="view">
+  <ion-nav-bar class="bar-energized titulo">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-nav-buttons side="right">
+    <a class="button button-icon button-clear ion-log-out" menu-toggle="right" ng-click="deslogar()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="list card">
+      <ion-item class="profile-item">
+        <div class="profile-picture big-profile-picture">
+          <img src="{{usuario.img}}">
+        </div>
+        <h2 class="profile-name dark">{{usuario.nome}}</h2>
+        <div class="profile-info">{{usuario.apelido}}</div>
+      </ion-item>
+      <ion-item>
+        <ion-toggle toggle-class="toggle-energized" ng-model="usuario.notificacoes" ng-change="mudarNotificacoes()">
+            Notificações
+        </ion-toggle>
+      </ion-item>
+      <ion-item class="profile-item">
+        <button ng-click="editarPerfil(usuario.id)" class="button button-energized" >
+          Editar Perfil
+        </button>
+        <button ng-click="alterarSenha(usuario.id)" ng-disabled="usuario.alteraSenha" class="button button-energized">
+          Alterar Senha
+        </button>
+      </ion-item>
+    </div>
+  </ion-content>
+</ion-view>

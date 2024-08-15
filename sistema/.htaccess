@@ -1,0 +1,8 @@
+# ACESSO N�O AUTORIZADO - ERRO 401
+ErrorDocument 401 /my-king/index.php?Errors/HTTP_401
+# ACESSO NEGADO - ERRO 403 
+ErrorDocument 403 /my-king/index.php?Errors/HTTP_403
+# PAGINA N�O EXISTE - ERRO 404
+ErrorDocument 404 /my-king/index.php?Errors/HTTP_404
+# ERRO INTERNO DO SERVIDOR - ERRO 500
+ErrorDocument 500 /my-king/index.php?Errors/HTTP_500

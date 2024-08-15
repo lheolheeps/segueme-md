@@ -1,0 +1,110 @@
+<script type="text/javascript">
+    $(function () {
+        $('#fAltera').populate(<?php echo $view_json_objeto; ?>);
+    });
+</script>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Alterar Publicação</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <?php if($view_erro): ?>
+                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+                        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Ops!</strong> <?php echo $view_infoErro; ?>
+                        </div>
+                    </div>
+                <?php endif;?>
+                <br />
+                <form id="fAltera" method="post" enctype="multipart/form-data" action="<?php echo UrlRequestHelper::mountUrlPost('Publicacao', 'atualizar') ?>" class="form-horizontal form-label-left">
+                    <input type="hidden" name="pagina" value="<?php echo $view_pagina;?>"/>
+                    <input type="hidden" name="id"/>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="titulo">Titulo <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <input type="text" name="titulo" maxlength="45" placeholder="Ex: Paixão de Cristo 2016" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Imagem <span class="required"></span></label>
+                        <div class="col-md-5 col-sm-5 col-xs-12">    
+                            <input placeholder="Insira uma Imagem" type="file" id="imagem" name="imagem"/>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 text-right">  
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Visualizar</button>   
+                        </div>  
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel2">Visualizar Imagem</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12 col-xs-12">  
+                                                <img class="col-md-12 col-xs-12 center-block" src="<?php echo $view_img;?>" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-12">Permitidos apenas formatos .PNJ & .JPG</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Descrição <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <textarea class="form-control" rows="3" maxlength="400" placeholder="Ex: Atenção Seguidores..." required="" name="descricao"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Canal <span class="required">*</span></label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div id="canal" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="canal" value="1"> Mobile
+                                </label>
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="canal" value="2"> Web
+                                </label>
+                                <label class="btn btn-warning" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="canal" value="3"> Ambos
+                                </label>
+                            </div>
+                        </div>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Publicar como <span class="required">*</span></label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div id="canal" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-warning" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="usuario" value="3"> Segue-me
+                                </label>
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="usuario" value="999"> <?php echo $view_usuario; ?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
+                            <button type="submit" class="btn btn-success">Enviar</button>
+                            <a href="index.php?Publicacao/listar" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

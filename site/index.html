@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Segue-me M/D - Aplicativo</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Felipe Assuncao"/>
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body id="top">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="content" style="font-variant: small-caps;">
+                <h1><a style="font-family: 'Lucida Handwriting'">Segue-me M/D</a></h1>
+                <p>Sou Seguidor, a boa nova vou Levar ♫</p>
+                <ul class="actions">
+                    <li><button onclick="emiteAlerta()" class="button special icon fa-apple">IOS Version</button></li>
+                    <li><button onclick="baixarAndroid()" class="button special icon fa-android scrolly">Anrdoid Version</button></li>
+                </ul>
+                <script>
+                    function emiteAlerta(){
+                        alert("Desculpe, a versão para IOS ainda não está Disponivel. :(");
+                    }
+                    function baixarAndroid(){
+                        window.location = "android/seguememd.apk";
+                    }
+                </script>
+            </div>
+            <div class="image phone"><div class="inner"><img src="images/screen.jpg" alt="" /></div></div>
+        </header>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="http://facebook.com/Seguememd" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="http://instagram.com/segue_me01" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            </ul>
+            <p class="copyright">Segue-me M/D &copy; 2016 | Desenvolvido por: <a href="http://felipeassuncao.com">Felipe Assunção    </a></p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<div class="row tile_count">
+    <div class="animated flipInY col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+        <div class="left"></div>
+        <div class="right">
+            <span class="count_top"><i class="fa fa-heart"></i> Seguidas - Ultima Publicação</span>
+            <div class="count"><?php echo $view_curtidas; ?></div>
+            <span class="count_bottom"><i class="<?php echo $view_curtidasCor; ?>"><i class="fa <?php echo $view_curtidasSeta; ?>"></i><?php echo $view_curtidasPorcentagem; ?>% </i> Em relação a publicação anterior</span>
+        </div>
+    </div>
+    <div class="animated flipInY col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+        <div class="left"></div>
+        <div class="right">
+            <span class="count_top"><i class="fa fa-comments"></i> Comentarios - Ultima Publicação</span>
+            <div class="count"><?php echo $view_comentarios; ?></div>
+            <span class="count_bottom"><i class="<?php echo $view_comentariosCor; ?>"><i class="fa <?php echo $view_comentariosSeta; ?>"></i><?php echo $view_comentariosPorcentagem; ?>% </i> Em relação a publicação anterior</span>
+        </div>
+    </div>
+</div>
+<!-- /top tiles -->
+<br>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height:300px;">
+            <div class="x_title">
+                <h2>Bem Vindo, <?php echo $view_usuario; ?>.</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class='welcome' style='margin-top: 90px; text-align: center;'>
+                <h2>"<?php echo $view_frase; ?>"</h2>
+                <h3> <cite title="Autor">-- <?php echo $view_autor; ?>!</cite></h3>
+            </div>
+        </div>
+    </div>
+</div>

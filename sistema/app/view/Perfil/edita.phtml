@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    $(function () {
+        $('#fEdita').populate(<?php echo $view_json_objeto; ?>);
+    });
+</script>
+<div class="two-forms">
+    <div class="wrap">
+        <br>
+        <div class="login">
+            <h2 style="text-align: center;">Segue-me M/D - Editar Perfil</h2>
+            <?php if($view_erro): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Algo errado Aconteceu. Por favor Contate o Administrador.</label>
+                </div> <br>
+            <?php endif; ?>
+            <?php if($view_success): ?>
+                <div class="success">
+                    <label for="inputError1">Alterações realizadas com Sucesso.</label>
+                </div> <br>
+            <?php endif; ?>
+            <div class="login-info">
+                <form id="fEdita" method="post" action="index.php?Request/post/l/Usuario/a/atualizar">
+                    <div class="users">
+                        <input name="id" type="hidden"/>
+                        <input name="nome" type="text" class="text" placeholder="Insira seu Nome" required="">
+                        <input name="apelido" type="text" class="text" placeholder="Insira seu Apelido" requirid="">
+                        <input name="hierarquia" type="radio" value="1" checked=""/> Primo(a)
+                        <input name="hierarquia" type="radio" value="2"/> Tio(a)
+                    </div>
+                    <div class="btns">
+                        <input type="submit" value="Salvar" >
+                    </div>
+                </form>
+                <div class="clear"> </div>
+            </div>
+        </div>
+        <div class="clear"> </div>
+    </div>
+</div>
+<div class="copy-right">
+    <p><a href="http://seguememd.com.br" target="_blank">Segue-me M/D</a> &copy; 2016 | Todos os Direitos Reservados</p>
+</div>

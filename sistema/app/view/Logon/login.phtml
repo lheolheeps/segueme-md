@@ -1,0 +1,46 @@
+<div class="two-forms">
+    <div class="wrap">
+        <div class="login">
+            <h3 style="text-align: center;">Segue-me M/D - Login</h3>
+            <?php if($view_erro): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Combinação não encontrada no sistema, tente novamente ou Contate o Administrador.</label>
+                </div>
+            <?php endif; ?>
+            <?php if($view_erroStatus): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Seu usuario encontra-se Desativado. Por favor Contate o Administrador.</label>
+                </div>
+            <?php endif; ?>
+            <?php if($view_erroLoguese): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Faça Login para Continuar.</label>
+                </div>
+            <?php endif; ?>
+            <?php if($view_erroTipo): ?>
+                <div class="error">
+                    <label for="inputError1">Ops, Seu usuario não possui permissão para esta Operação.</label>
+                </div>
+            <?php endif; ?>
+            <div class="login-info">
+                <form method="post" action="index.php?Request/post/l/Usuario/a/logar">
+                    <input name="email" type="email" class="text" placeholder="Insira seu E-mail" required="">
+                    <input name="senha" type="password" placeholder="Insira sua Senha" required="">
+                    <div class="btns">
+                        <input type="submit" value="login" >
+                    </div>
+                    <div class="">
+                        <button class="fbook" onclick="checkLoginState();">
+                            <i class="fa fa-facebook-square"></i>
+                            Entrar com o Facebook
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="clear"> </div>
+    </div>
+</div>
+<div class="copy-right">
+    <p><a href="http://seguememd.com.br" target="_blank">Segue-me M/D</a> &copy; 2016 | Todos os Direitos Reservados</p>
+</div>

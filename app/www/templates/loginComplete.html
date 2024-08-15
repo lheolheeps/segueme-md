@@ -1,0 +1,32 @@
+<ion-view cache-view="false" class="view login">
+  <ion-content scroll="false">
+    <div class="tituloLogin">
+      <div>
+        <h1>Segue-me M/D - Cadastro</h1>
+      </div>
+      <div class="list list-inset">
+        <form name="formCadastro">
+          <label class="item item-input">
+            <input type="text" ng-model="form.apelido" name="apelido" placeholder="Serve seu Nome!" required="">
+            <span ng-class="error" ng-show="formCadastro.apelido.$error.required">Informe seu Apelido&nbsp;</span>
+          </label>
+          <label class="item item-input">
+            <ion-list>
+              <div class="row">
+                <div class="col col-55">
+                  <ion-radio ng-model="form.hierarquia" ng-value="primo">Primo(a)</ion-radio>
+                </div>
+                <div class="col col-45">
+                  <ion-radio ng-model="form.hierarquia" ng-value="tio">Tio(a)</ion-radio>
+                </div>
+              </div>
+            </ion-list>
+          </label>
+        </div>
+        <div class="submit">
+          <input ng-disabled="formCadastro.$invalid" ng-click="cadastrar()" class="button button-block button-positive" Value="Salvar">
+        </div>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>
